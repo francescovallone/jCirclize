@@ -11,6 +11,7 @@ Download the [repository][repo].
 ### Load The Plugin
 
 Use `<script src="dist/jquery.jCirclize.js"></script>` to load the plugin inside your HTML page.
+
 And use `<link href="css/jCirclize.css" rel="stylesheet" type="text/css">` to load the style inside your HTML page.
 
 *REMEMBER:* You have to load these two files and JQuery to use this plugin.
@@ -35,10 +36,11 @@ You can customize the percentage circle using some options of jCirclize. These a
 $(document).ready(function() {
      $('#object').circlize({
 		radius: 100, // The radius of the circle
-		perc: 50, //The Percentage covered by the foreground
+		perc: 50, // The percentage covered by the foreground
 		background: "rgba(20,20,20,0.5)",
 		foreground: "#1a1a1a",
-		stroke: 20 // The width of the stroke
+		stroke: 20, // The width of the stroke
+		duration: 1000 // The duration of the animation in milliseconds
 	 });
  });
 ~~~
