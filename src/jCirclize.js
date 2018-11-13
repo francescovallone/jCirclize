@@ -26,15 +26,15 @@
 			jQuery({ counter: 0 }).animate({ counter: $(".percentage").text()}, {
 				duration: opts.duration,
 				easing: "swing",
-				step: function () {
-				  $(".percentage").text(Math.ceil(this.counter) + "%");
-				  context.beginPath();
-				  context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
-				  context.fillStyle = "transparent";
-				  context.fill();
-				  context.strokeStyle = opts.foreground;
-				  context.lineWidth = opts.stroke;
-				  context.stroke();
+				step() {
+					$(".percentage").text(Math.ceil(this.counter) + "%");
+				  	context.beginPath();
+				  	context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
+					context.fillStyle = "transparent";
+					context.fill();
+					context.strokeStyle = opts.foreground;
+					context.lineWidth = opts.stroke;
+					context.stroke();
 				}
 			  });
 			ctn = $(cnv)[1].getContext("2d");
