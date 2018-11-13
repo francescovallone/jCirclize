@@ -1,5 +1,7 @@
 # JCirclize
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/807123315cce4d12a7132181203cf46e)](https://www.codacy.com/app/francescovallone/jCirclize?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=francescovallone/jCirclize&amp;utm_campaign=Badge_Grade)
+
 ## Description
 Percentage Circles Plugin for [jQuery](https://jquery.com/)
 
