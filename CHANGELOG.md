@@ -7,6 +7,7 @@ Releases are be numbered in the semantic versioning format:
 ## v1.0.1
 
 Added animations.
+Added minimum and maximum values
 
 ## v1.0.0
 

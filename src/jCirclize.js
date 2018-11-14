@@ -1,22 +1,34 @@
 (function( $ ){
 	$.fn.circlize = function(options) {
 		var defaults = {
-			radius: 100,
-			perc: 50,
+			radius: 60,
+			percentage: 50,
+			usePercentage: false,
 			background: "rgba(20,20,20,0.5)",
 			foreground: "#1a1a1a",
 			stroke: 20,
-			duration: 1000
+			duration: 1000,
+			min: 100,
+			max: 100
 		};
+		if(defaults.max < defaults.min){
+			console.log("max must be greater than min");
+			defaults = {};
+		}
 		var opts = $.extend(true ,{}, defaults, options );
 		return this.each(function() {
-			var angle, box, x, y, html, context, cnv, ctn, counter=0;
+			var perc, box, x, y, html, context, cnv, ctn;
 			box = (Math.PI*(opts.radius));
 			x = box/2;
 			y = box/2;
+			if(opts.usePercentage){
+				perc = opts.percentage;
+			}else{
+				perc = opts.min;
+			}
 			html = "<canvas class=\"circle lol\" width="+box+" height="+box+"></canvas>" + 
 						"<canvas class=\"circle sad\" width="+box+" height="+box+"></canvas>" +
-						"<div class=\"percentage\">"+ opts.perc +"</div>";
+						"<div class=\"percentage\">"+ perc +"</div>";
 			$(this).append(html);
 			$(this).addClass("canvasized");
 			cnv = $(this).children(".circle");
@@ -27,16 +39,27 @@
 				duration: opts.duration,
 				easing: "swing",
 				step() {
-					$(".percentage").text(Math.ceil(this.counter) + "%");
-				  	context.beginPath();
-				  	context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
-					context.fillStyle = "transparent";
-					context.fill();
-					context.strokeStyle = opts.foreground;
-					context.lineWidth = opts.stroke;
-					context.stroke();
+					if(opts.usePercentage){
+						$(".percentage").text(Math.ceil(this.counter) + "%");
+						context.beginPath();
+				  		context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
+						context.fillStyle = "transparent";
+						context.fill();
+						context.strokeStyle = opts.foreground;
+						context.lineWidth = opts.stroke;
+						context.stroke();
+					}else{
+						$(".percentage").text(Math.ceil(this.counter * 10)/10 + "/" + Math.ceil(opts.max * 10)/10);
+						context.beginPath();
+				  		context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/opts.max)*2)*Math.PI, 2*Math.PI);
+						context.fillStyle = "transparent";
+						context.fill();
+						context.strokeStyle = opts.foreground;
+						context.lineWidth = opts.stroke;
+						context.stroke();
+					}
 				}
-			  });
+			});
 			ctn = $(cnv)[1].getContext("2d");
 			ctn.beginPath();
 			ctn.arc(x, y, opts.radius, 0*Math.PI, 2*Math.PI);

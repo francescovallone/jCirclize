@@ -38,11 +38,14 @@ You can customize the percentage circle using some options of jCirclize. These a
 $(document).ready(function() {
      $('#object').circlize({
 		radius: 100, // The radius of the circle
-		perc: 50, // The percentage covered by the foreground
+		percentage: 50, // The percentage covered by the foreground
+		usePercentage: true, // If you turn it to false it will use min and max
 		background: "rgba(20,20,20,0.5)",
 		foreground: "#1a1a1a",
 		stroke: 20, // The width of the stroke
-		duration: 1000 // The duration of the animation in milliseconds
+		duration: 1000, // The duration of the animation in milliseconds
+		min: 100, // The minimum value
+		max: 100 // The maximum value
 	 });
  });
 ~~~
