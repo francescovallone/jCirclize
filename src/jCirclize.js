@@ -3,18 +3,14 @@
 		var defaults = {
 			radius: 60,
 			percentage: 50,
-			usePercentage: false,
+			usePercentage: true,
 			background: "rgba(20,20,20,0.5)",
 			foreground: "#1a1a1a",
 			stroke: 20,
 			duration: 1000,
 			min: 100,
-			max: 100
+			max: 200
 		};
-		if(defaults.max < defaults.min){
-			console.log("max must be greater than min");
-			defaults = {};
-		}
 		var opts = $.extend(true ,{}, defaults, options );
 		return this.each(function() {
 			var perc, box, x, y, html, context, cnv, ctn;
