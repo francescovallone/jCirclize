@@ -38,7 +38,7 @@
 					if(opts.usePercentage){
 						$(".percentage").text(Math.ceil(this.counter) + "%");
 						context.beginPath();
-				  		context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
+						context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
 						context.fillStyle = "transparent";
 						context.fill();
 						context.strokeStyle = opts.foreground;
@@ -47,7 +47,7 @@
 					}else{
 						$(".percentage").text(Math.ceil(this.counter * 10)/10 + "/" + Math.ceil(opts.max * 10)/10);
 						context.beginPath();
-				  		context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/opts.max)*2)*Math.PI, 2*Math.PI);
+						context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/opts.max)*2)*Math.PI, 2*Math.PI);
 						context.fillStyle = "transparent";
 						context.fill();
 						context.strokeStyle = opts.foreground;

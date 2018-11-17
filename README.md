@@ -3,6 +3,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/807123315cce4d12a7132181203cf46e)](https://www.codacy.com/app/francescovallone/jCirclize?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=francescovallone/jCirclize&amp;utm_campaign=Badge_Grade)
 
 ## Description
+
 Percentage Circles Plugin for [jQuery](https://jquery.com/)
 
 ## Installation
@@ -10,17 +11,22 @@ Percentage Circles Plugin for [jQuery](https://jquery.com/)
 Download the [repository][repo].
 
 ## Usage
+
 ### Load The Plugin
 
-Use `<script src="dist/jquery.jCirclize.js"></script>` to load the plugin inside your HTML page.
+Use `<script src="dist/jquery.jCirclize.js"></script>` to load the jQuery version of the plugin.
+*REMEMBER:* You have to load jQuery to use this version.
+
+or use `<script src="dist/vanilla.jCirclize.js"></script>` to load the vanilla version of the plugin.
 
 And use `<link href="css/jCirclize.css" rel="stylesheet" type="text/css">` to load the style inside your HTML page.
 
-*REMEMBER:* You have to load these two files and JQuery to use this plugin.
+*WARNING* You have to load one version of the plugin and the css file to use this plugin.
 
 ## Basic Usage
 
 You can just call the function without any options.
+
 ~~~javascript
 
 // JQuery Version
@@ -36,6 +42,7 @@ circlize(element, {});
 
 
 ~~~
+
 Calling the function you set the element to the default parameters, it creates something like this:
 
 ![Preview](https://i.imgur.com/bqkjhDO.png)
