@@ -22,8 +22,8 @@
 			}else{
 				perc = opts.min;
 			}
-			html = "<canvas class=\"circle lol\" width="+box+" height="+box+"></canvas>" + 
-						"<canvas class=\"circle sad\" width="+box+" height="+box+"></canvas>" +
+			html = "<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" + 
+						"<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" +
 						"<div class=\"percentage\">"+ perc +"</div>";
 			$(this).append(html);
 			$(this).addClass("canvasized");

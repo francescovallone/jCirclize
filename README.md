@@ -22,9 +22,19 @@ And use `<link href="css/jCirclize.css" rel="stylesheet" type="text/css">` to lo
 
 You can just call the function without any options.
 ~~~javascript
+
+// JQuery Version
+
 $(document).ready(function() {
-     $('#object').circlize();
- });
+    $('#object').circlize();
+});
+
+// JavaScript Version
+
+var element = document.getElementById("yourElement");
+circlize(element, {});
+
+
 ~~~
 Calling the function you set the element to the default parameters, it creates something like this:
 
@@ -35,8 +45,11 @@ Calling the function you set the element to the default parameters, it creates s
 You can customize the percentage circle using some options of jCirclize. These are the defaults.
 
 ~~~javascript
+
+// JQuery Version
+
 $(document).ready(function() {
-     $('#object').circlize({
+    $('#object').circlize({
 		radius: 100, // The radius of the circle
 		percentage: 50, // The percentage covered by the foreground
 		usePercentage: true, // If you turn it to false it will use min and max
@@ -46,8 +59,24 @@ $(document).ready(function() {
 		duration: 1000, // The duration of the animation in milliseconds
 		min: 100, // The minimum value
 		max: 100 // The maximum value
-	 });
- });
+	});
+});
+
+// JavaScript Version
+
+var element = document.getElementById("yourElement");
+circlize(element, {
+	radius: 100, // The radius of the circle
+	percentage: 50, // The percentage covered by the foreground
+	usePercentage: true, // If you turn it to false it will use min and max
+	background: "rgba(20,20,20,0.5)",
+	foreground: "#1a1a1a",
+	stroke: 20, // The width of the stroke
+	duration: 1000, // The duration of the animation in milliseconds
+	min: 100, // The minimum value
+	max: 100 // The maximum value
+});
+
 ~~~
 
 This is my first plugin for JQuery, I hope you like it.

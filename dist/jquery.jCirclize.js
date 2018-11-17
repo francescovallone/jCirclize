@@ -1,7 +1,7 @@
 (function( $ ){
 	$.fn.circlize = function(options) {
 		var defaults = {
-			radius: 60,
+			radius: 100,
 			percentage: 50,
 			usePercentage: true,
 			background: "rgba(20,20,20,0.5)",
@@ -9,7 +9,7 @@
 			stroke: 20,
 			duration: 1000,
 			min: 100,
-			max: 200
+			max: 100
 		};
 		var opts = $.extend(true ,{}, defaults, options );
 		return this.each(function() {
@@ -22,8 +22,8 @@
 			}else{
 				perc = opts.min;
 			}
-			html = "<canvas class=\"circle lol\" width="+box+" height="+box+"></canvas>" + 
-						"<canvas class=\"circle sad\" width="+box+" height="+box+"></canvas>" +
+			html = "<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" + 
+						"<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" +
 						"<div class=\"percentage\">"+ perc +"</div>";
 			$(this).append(html);
 			$(this).addClass("canvasized");
