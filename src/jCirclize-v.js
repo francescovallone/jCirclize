@@ -13,17 +13,13 @@ function circlize(e, options){
         max: 100,
         gradientColors: ["#f0f0f0", "red", "#f0f0f0"]
     };
-    var opts = Object.assign({}, defaults, options);
+    var o = Object.assign({}, defaults, options);
     var perc, box, x, y, html, context, cnv, ctn, speed, counter=1, fore, gradient;
-    box = (Math.PI*(opts.radius));
+    box = (Math.PI*(o.radius));
     x = box/2;
     y = box/2;
     speed = 1000/60;
-    if(opts.usePercentage){
-        perc = opts.percentage;
-    }else{
-         perc = opts.min;
-    }
+    perc = o.usePercentage ? o.percentage : o.min;
     html = "<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" + 
             "<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" +
             "<div class=\"percentage\">"+ perc +"</div>";
@@ -33,35 +29,31 @@ function circlize(e, options){
     context = cnv[0].getContext("2d");
     context.translate(0, box);
     context.rotate(-Math.PI / 2);
-    if(opts.useGradient){
-        gradient = context.createLinearGradient(0,0,opts.radius*Math.PI,0);
-        gradient.addColorStop(0, opts.gradientColors[0]);
-        gradient.addColorStop(0.5, opts.gradientColors[1]);
-        gradient.addColorStop(1, opts.gradientColors[2]);
-        fore = gradient;
-    }else{
-        fore = opts.foreground;
-    }
-    if(opts.useAnimations){
+    gradient = context.createLinearGradient(0,0,o.radius*Math.PI,0);
+    gradient.addColorStop(0, o.gradientColors[0]);
+    gradient.addColorStop(0.5, o.gradientColors[1]);
+    gradient.addColorStop(1, o.gradientColors[2]);
+    fore = o.useGradient ? gradient : o.foreground;
+    if(o.useAnimations){
         var timerId = setInterval(function() {
             counter++;
-            if(opts.usePercentage){
+            if(o.usePercentage){
                 cnv[2].innerHTML = counter + "%";
                 context.beginPath();
-                context.arc(x, y, opts.radius, (2-(counter/100)*2)*Math.PI, 2*Math.PI);
+                context.arc(x, y, o.radius, (2-(counter/100)*2)*Math.PI, 2*Math.PI);
                 context.fillStyle = "transparent";
                 context.fill();
                 context.strokeStyle = fore;
-                context.lineWidth = opts.stroke;
+                context.lineWidth = o.stroke;
                 context.stroke();
             }else{
-                cnv[2].innerHTML = (counter * 10)/10 + "/" + (opts.max * 10)/10;
+                cnv[2].innerHTML = (counter * 10)/10 + "/" + (o.max * 10)/10;
                 context.beginPath();
-                context.arc(x, y, opts.radius, (2-(counter/opts.max)*2)*Math.PI, 2*Math.PI);
+                context.arc(x, y, o.radius, (2-(counter/o.max)*2)*Math.PI, 2*Math.PI);
                 context.fillStyle = "transparent";
                 context.fill();
                 context.strokeStyle = fore;
-                context.lineWidth = opts.stroke;
+                context.lineWidth = o.stroke;
                 context.stroke();
             }
             if (counter === perc){
@@ -69,32 +61,32 @@ function circlize(e, options){
             }
         },speed);
     }else{
-        if(opts.usePercentage){
-            cnv[2].innerHTML = opts.percentage + "%";
+        if(o.usePercentage){
+            cnv[2].innerHTML = o.percentage + "%";
             context.beginPath();
-            context.arc(x, y, opts.radius, (2-(opts.percentage/100)*2)*Math.PI, 2*Math.PI);
+            context.arc(x, y, o.radius, (2-(o.percentage/100)*2)*Math.PI, 2*Math.PI);
             context.fillStyle = "transparent";
             context.fill();
             context.strokeStyle = fore;
-            context.lineWidth = opts.stroke;
+            context.lineWidth = o.stroke;
             context.stroke();
         }else{
-            cnv[2].innerHTML = (opts.min * 10)/10 + "/" + (opts.max * 10)/10;
+            cnv[2].innerHTML = (o.min * 10)/10 + "/" + (o.max * 10)/10;
             context.beginPath();
-            context.arc(x, y, opts.radius, (2-(opts.min/opts.max)*2)*Math.PI, 2*Math.PI);
+            context.arc(x, y, o.radius, (2-(o.min/o.max)*2)*Math.PI, 2*Math.PI);
             context.fillStyle = "transparent";
             context.fill();
             context.strokeStyle = fore;
-            context.lineWidth = opts.stroke;
+            context.lineWidth = o.stroke;
             context.stroke();
         }
     }
     ctn = cnv[1].getContext("2d");
 	ctn.beginPath();
-	ctn.arc(x, y, opts.radius, 0*Math.PI, 2*Math.PI);
+	ctn.arc(x, y, o.radius, 0*Math.PI, 2*Math.PI);
 	ctn.fillStyle = "transparent";
 	ctn.fill();
-	ctn.strokeStyle = opts.background;
-	ctn.lineWidth = opts.stroke;
+	ctn.strokeStyle = o.background;
+	ctn.lineWidth = o.stroke;
 	ctn.stroke();
 }

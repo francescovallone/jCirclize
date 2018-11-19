@@ -11,7 +11,7 @@
 			stroke: 20,
 			duration: 1000,
 			min: 100,
-			max: 100,
+			max: 200,
 			gradientColors: ["#f0f0f0", "red", "#f0f0f0"]
 		};
 		var opts = $.extend(true ,{}, defaults, options );
@@ -20,11 +20,7 @@
 			box = (Math.PI*(opts.radius));
 			x = box/2;
 			y = box/2;
-			if(opts.usePercentage){
-				perc = opts.percentage;
-			}else{
-				perc = opts.min;
-			}
+			perc = opts.usePercentage ? opts.percentage : opts.min;
 			html = "<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" + 
 						"<canvas class=\"circle\" width="+box+" height="+box+"></canvas>" +
 						"<div class=\"percentage\">"+ perc +"</div>";
