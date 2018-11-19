@@ -4,16 +4,19 @@
 			radius: 100,
 			percentage: 50,
 			usePercentage: true,
+			useAnimations: true,
+			useGradient: true,
 			background: "rgba(20,20,20,0.5)",
 			foreground: "#1a1a1a",
 			stroke: 20,
 			duration: 1000,
 			min: 100,
-			max: 100
+			max: 100,
+			gradientColors: ["#f0f0f0", "red", "#f0f0f0"]
 		};
 		var opts = $.extend(true ,{}, defaults, options );
 		return this.each(function() {
-			var perc, box, x, y, html, context, cnv, ctn;
+			var perc, box, x, y, html, context, cnv, ctn, fore, gradient;
 			box = (Math.PI*(opts.radius));
 			x = box/2;
 			y = box/2;
@@ -31,31 +34,62 @@
 			context = $(cnv)[0].getContext("2d");
 			context.translate(0, box);
 			context.rotate(-Math.PI / 2);
-			jQuery({ counter: 0 }).animate({ counter: $(".percentage").text()}, {
-				duration: opts.duration,
-				easing: "swing",
-				step() {
-					if(opts.usePercentage){
-						$(".percentage").text(Math.ceil(this.counter) + "%");
-						context.beginPath();
-				  		context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
-						context.fillStyle = "transparent";
-						context.fill();
-						context.strokeStyle = opts.foreground;
-						context.lineWidth = opts.stroke;
-						context.stroke();
-					}else{
-						$(".percentage").text(Math.ceil(this.counter * 10)/10 + "/" + Math.ceil(opts.max * 10)/10);
-						context.beginPath();
-				  		context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/opts.max)*2)*Math.PI, 2*Math.PI);
-						context.fillStyle = "transparent";
-						context.fill();
-						context.strokeStyle = opts.foreground;
-						context.lineWidth = opts.stroke;
-						context.stroke();
+			if(opts.useGradient){
+				gradient = context.createLinearGradient(0,0,opts.radius*Math.PI,0);
+				gradient.addColorStop(0, opts.gradientColors[0]);
+				gradient.addColorStop(0.5, opts.gradientColors[1]);
+				gradient.addColorStop(1, opts.gradientColors[2]);
+				fore = gradient;
+			}else{
+				fore = opts.foreground;
+			}
+			if(opts.useAnimations){
+				jQuery({ counter: 0 }).animate({ counter: $(".percentage").text()}, {
+					duration: opts.duration,
+					easing: "swing",
+					step() {
+						if(opts.usePercentage){
+							$(".percentage").text(Math.ceil(this.counter) + "%");
+							context.beginPath();
+							context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/100)*2)*Math.PI, 2*Math.PI);
+							context.fillStyle = "transparent";
+							context.fill();
+							context.strokeStyle = fore;
+							context.lineWidth = opts.stroke;
+							context.stroke();
+						}else{
+							$(".percentage").text(Math.ceil(this.counter * 10)/10 + "/" + Math.ceil(opts.max * 10)/10);
+							context.beginPath();
+							context.arc(x, y, opts.radius, (2-(Math.ceil(this.counter)/opts.max)*2)*Math.PI, 2*Math.PI);
+							context.fillStyle = "transparent";
+							context.fill();
+							context.strokeStyle = fore;
+							context.lineWidth = opts.stroke;
+							context.stroke();
+						}
 					}
+				});
+			}else{
+				if(opts.usePercentage){
+					$(".percentage").text(opts.percentage + "%");
+					context.beginPath();
+					context.arc(x, y, opts.radius, (2-(Math.ceil(opts.percentage)/100)*2)*Math.PI, 2*Math.PI);
+					context.fillStyle = "transparent";
+					context.fill();
+					context.strokeStyle = fore;
+					context.lineWidth = opts.stroke;
+					context.stroke();
+				}else{
+					$(".percentage").text(Math.ceil(opts.min * 10)/10 + "/" + Math.ceil(opts.max * 10)/10);
+					context.beginPath();
+					context.arc(x, y, opts.radius, (2-(Math.ceil(opts.min)/opts.max)*2)*Math.PI, 2*Math.PI);
+					context.fillStyle = "transparent";
+					context.fill();
+					context.strokeStyle = fore;
+					context.lineWidth = opts.stroke;
+					context.stroke();
 				}
-			});
+			}
 			ctn = $(cnv)[1].getContext("2d");
 			ctn.beginPath();
 			ctn.arc(x, y, opts.radius, 0*Math.PI, 2*Math.PI);

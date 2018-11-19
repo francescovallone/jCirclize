@@ -60,12 +60,15 @@ $(document).ready(function() {
 		radius: 100, // The radius of the circle
 		percentage: 50, // The percentage covered by the foreground
 		usePercentage: true, // If you turn it to false it will use min and max
+		useAnimations: true,
+		useGradient: true,
 		background: "rgba(20,20,20,0.5)",
 		foreground: "#1a1a1a",
 		stroke: 20, // The width of the stroke
 		duration: 1000, // The duration of the animation in milliseconds
 		min: 100, // The minimum value
-		max: 100 // The maximum value
+		max: 100, // The maximum value
+		gradientColors: ["#f0f0f0", "red", "#f0f0f0"]
 	});
 });
 
@@ -76,12 +79,15 @@ circlize(element, {
 	radius: 100, // The radius of the circle
 	percentage: 50, // The percentage covered by the foreground
 	usePercentage: true, // If you turn it to false it will use min and max
+	useAnimations: true,
+	useGradient: true,
 	background: "rgba(20,20,20,0.5)",
 	foreground: "#1a1a1a",
 	stroke: 20, // The width of the stroke
 	duration: 1000, // The duration of the animation in milliseconds
 	min: 100, // The minimum value
-	max: 100 // The maximum value
+	max: 100, // The maximum value
+	gradientColors: ["#f0f0f0", "red", "#f0f0f0"]
 });
 
 ~~~
