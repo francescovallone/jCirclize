@@ -30,20 +30,16 @@
 			context = $(cnv)[0].getContext("2d");
 			context.translate(0, box);
 			context.rotate(-Math.PI / 2);
-			if(opts.useGradient){
-				gradient = context.createLinearGradient(0,0,opts.radius*Math.PI,0);
-				gradient.addColorStop(0, opts.gradientColors[0]);
-				gradient.addColorStop(0.5, opts.gradientColors[1]);
-				gradient.addColorStop(1, opts.gradientColors[2]);
-				fore = gradient;
-			}else{
-				fore = opts.foreground;
-			}
+			gradient = context.createLinearGradient(0,0,opts.radius*Math.PI,0);
+			gradient.addColorStop(0, opts.gradientColors[0]);
+			gradient.addColorStop(0.5, opts.gradientColors[1]);
+			gradient.addColorStop(1, opts.gradientColors[2]);
+			fore = opts.useGradient ? gradient : opts.foreground;
 			if(opts.useAnimations){
 				jQuery({ counter: 0 }).animate({ counter: $(".percentage").text()}, {
 					duration: opts.duration,
 					easing: "swing",
-					step() {
+					step: function() {
 						if(opts.usePercentage){
 							$(".percentage").text(Math.ceil(this.counter) + "%");
 							context.beginPath();
