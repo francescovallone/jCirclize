@@ -1,5 +1,5 @@
 function circlize(e, options){
-    var defaults = {
+    let defaults = {
         radius: 100,
         percentage: 50,
         usePercentage: true,
@@ -10,8 +10,8 @@ function circlize(e, options){
         min: 100,
         max: 100
     };
-    var opts = Object.assign({}, defaults, options);
-    var perc, box, x, y, html, context, cnv, ctn, speed, counter=1;
+    let opts = Object.assign({}, defaults, options);
+    let perc, box, x, y, html, context, cnv, ctn, speed, counter=1;
     box = (Math.PI*(opts.radius));
     x = box/2;
     y = box/2;
@@ -30,7 +30,7 @@ function circlize(e, options){
     context = cnv[0].getContext("2d");
     context.translate(0, box);
     context.rotate(-Math.PI / 2);
-    var timerId = setInterval(function() {
+    let timerId = setInterval(function() {
         counter++;
         if(opts.usePercentage){
             cnv[2].innerHTML = counter + "%";
